@@ -18,6 +18,8 @@ Include extensions: `.jpg, .jpeg, .png, .gif, .svg`.
 
 **Warning:** the plugin does not generate thumbnail images.
 
+**P.S.** Why this plugin? For cheap govnosaytov with zero budget, where not need fancy galleries and expensive decisions.
+
 ### RU
 
 Контент-плагин вывода плитки изображений в материале.
@@ -33,6 +35,8 @@ Include extensions: `.jpg, .jpeg, .png, .gif, .svg`.
 * Подключать Lightbox2 (входит в состав плагина), по умолчанию да.
 
 **Важно:** плагин не формирует миниатюры изображений.
+
+**P.S.** Зачем этот плагин? Для дешевых говносайтов с нулевым бюджетом, где не нужны навороченные галереи и дорогие решения.
 
 ---
 
