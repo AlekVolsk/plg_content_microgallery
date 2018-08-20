@@ -1,0 +1,47 @@
+/*
+ * @package     Joomla.Plugin
+ * @subpackage  Content.microgallery
+ * @copyright   Copyright (C) 2018 Aleksey A. Morozov. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt
+ */
+
+.mgallery {
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	margin-top: 30px;
+	margin-left: -10px;
+	margin-bottom: -10px;
+}
+
+.mgallery:empty {
+	display: none;
+}
+
+.mgallery:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+.mgallery .item {
+	position: relative;
+	display: inline-block;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.mgallery .item:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transition: all .2s;
+}
+
+.mgallery .item:hover:before{
+	background-color: rgba(0,0,0,.1);
+}
