@@ -18,7 +18,7 @@ Include extensions: `.jpg, .jpeg, .png, .gif, .svg`.
 
 **Warning:** the plugin does not generate thumbnail images.
 
-**P.S.** Why this plugin? For cheap govnosaytov with zero budget, where not need fancy galleries and expensive decisions.
+**P.S.** Why this plugin? For simple sites with a zero budget, where not need fancy galleries and expensive decisions.
 
 ### RU
 
