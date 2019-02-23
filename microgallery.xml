@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<extension type="plugin" version="3.0" method="upgrade" group="content">
+<extension type="plugin" version="3.7" method="upgrade" group="content">
 	<name>PLG_MICROGALLERY</name>
-    <authorEmail>alekvolsk@yandex.ru</authorEmail>
-    <authorUrl>https://alekvolsk.pw</authorUrl>
-    <copyright>© 2018 Aleksey A. Morozov. All right reserved.</copyright>
-    <license>GNU General Public License version 3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt</license>
-	<creationDate>June 2017</creationDate>
-	<version>1.0.0</version>
+	<authorEmail>alekvolsk@yandex.ru</authorEmail>
+	<authorUrl>https://alekvolsk.pw</authorUrl>
+	<copyright>© 2019 Aleksey A. Morozov. All right reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt</license>
+	<creationDate>February 2019</creationDate>
+	<version>1.1.0</version>
 	<description>PLG_MICROGALLERY_DESC</description>
 	<scriptfile>script.php</scriptfile>
 	<files>
@@ -23,12 +23,16 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="width" type="text" label="PLG_MICROGALLERY_WIDTH" default="300px" />
-				<field name="includes" type="radio" label="PLG_MICROGALLERY_INCLUDES" class="btn-group btn-yesno" default="1" >
+				<field name="width" type="text" label="PLG_MICROGALLERY_WIDTH" default="25%" />
+				<field name="includes" type="radio" label="PLG_MICROGALLERY_INCLUDES" class="btn-group btn-yesno" default="1">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
-				<field name="lightbox" type="radio" label="PLG_MICROGALLERY_LIGHTBOX" class="btn-group btn-yesno" default="1" >
+				<field name="lazysizes" type="radio" label="PLG_MICROGALLERY_LAZYSIZES" class="btn-group btn-yesno" default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="lightbox" type="radio" label="PLG_MICROGALLERY_LIGHTBOX" class="btn-group btn-yesno" default="1">
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>

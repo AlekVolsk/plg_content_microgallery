@@ -1,45 +1,22 @@
 # Microgallery
 
-![Github Releases](https://img.shields.io/github/downloads/AlekVolsk/plg_content_microgallery/latest/total.svg)
+![Version](https://img.shields.io/badge/VERSION-1.1.0-0366d6.svg?style=for-the-badge)
+![Joomla](https://img.shields.io/badge/joomla-3.7+-1A3867.svg?style=for-the-badge)
+![Php](https://img.shields.io/badge/php-5.6+-8892BF.svg?style=for-the-badge)
 
-### EN
+_description in Russian [here](README.ru.md)_
 
-Content plugin for displaying image tiles in the article.
+Content plugin for Joomla! 3 for displaying image tiles in the article.
 
-Enter into the article: `{microgallery image_path}`. The path is specified from the site root. Exclude subdirectories.
+Shortcode format: `{microgallery image_path}`. The path is specified from the site root. Exclude subdirectories.
 
 Include extensions: `.jpg, .jpeg, .png, .gif, .svg`.
 
 **Params:**
 
-* Image width, default 300px.
-* Connect scripts and plugin styles, by default Yes, if not — provide output layout in the main site template.
-* Connect Lightbox2 (included in the plugin), default Yes.
+* Image width, default 25%.
+* Connect plugin styles, by default Yes, if not — provide output layout in the main site template.
+* Connect Lazyload (included in the plugin), default Yes.
+* Connect Lightbox (included in the plugin), default Yes.
 
 **Warning:** the plugin does not generate thumbnail images.
-
-**P.S.** Why this plugin? For simple sites with a zero budget, where not need fancy galleries and expensive decisions.
-
-### RU
-
-Контент-плагин вывода плитки изображений в материале.
-
-Введите в тело материала: `{microgallery путь_к_папке_с_изображениями}`. Путь указывается от корня сайта. Подпаки не включаются.
-
-В папке ищутся файлы со следующими расширениями: `.jpg, .jpeg, .png, .gif, .svg`.
-
-**Параметры:**
-
-* Ширина изображений, по умолчанию 300px.
-* Подключать скрипты и стили плагина, по умолчанию да, если нет — обеспечьте верстку вывода в основном шаблоне сайта.
-* Подключать Lightbox2 (входит в состав плагина), по умолчанию да.
-
-**Важно:** плагин не формирует миниатюры изображений.
-
-**P.S.** Зачем этот плагин? Для дешевых говносайтов с нулевым бюджетом, где не нужны навороченные галереи и дорогие решения.
-
----
-
-Joomla 3.0+
-
-PHP 5.6+
