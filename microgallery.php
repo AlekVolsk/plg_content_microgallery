@@ -13,17 +13,21 @@ use Joomla\CMS\Plugin\PluginHelper;
 class plgContentMicrogallery extends CMSPlugin
 {
 
-    public function onContentPrepare($context, $article, $params, $page = 0)
+    public function onContentPrepare($context, &$article, &$params, $page = 0)
     {
         if ($context == 'com_finder.indexer') {
-            return;
+            return false;
         }
 
         $regex = '/{microgallery\s(.*?)}/U';
 
         $results = [];
         preg_match_all($regex, $article->text, $results);
-
+        foreach ($results as $k => $result) {
+            if (!$result) {
+                unset($results[$k]);
+            }
+        }
         if (!$results) {
             return;
         }
@@ -36,18 +40,18 @@ class plgContentMicrogallery extends CMSPlugin
                 $css = 'plugins/content/microgallery/assets/microgallery.css';
             }
             $css = str_replace('\\', '/', $css);
-            HTMLHelper::stylesheet($css);
+            HTMLHelper::stylesheet($css, [], ['options' => ['version' => 'auto']]);
         }
 
         $lazysizes = $this->params->get('lazysizes') == '1';
         if ($lazysizes) {
-            HTMLHelper::script('plugins/content/microgallery/assets/lazysizes/ls.bgset.min.js');
-            HTMLHelper::script('plugins/content/microgallery/assets/lazysizes/lazysizes.min.js');
+            HTMLHelper::script('plugins/content/microgallery/assets/lazysizes/ls.bgset.min.js', [], ['options' => ['version' => 'auto']]);
+            HTMLHelper::script('plugins/content/microgallery/assets/lazysizes/lazysizes.min.js', [], ['options' => ['version' => 'auto']]);
         }
 
         if ($this->params->get('lightbox') == '1') {
-            HTMLHelper::stylesheet('plugins/content/microgallery/assets/lightgallery/css/lightgallery.min.css');
-            HTMLHelper::script('plugins/content/microgallery/assets/lightgallery/js/lightgallery.min.js');
+            HTMLHelper::stylesheet('plugins/content/microgallery/assets/lightgallery/css/lightgallery.min.css', [], ['options' => ['version' => 'auto']]);
+            HTMLHelper::script('plugins/content/microgallery/assets/lightgallery/js/lightgallery.min.js', [], ['options' => ['version' => 'auto']]);
         }
 
         foreach ($results[1] as $key => $result) {
