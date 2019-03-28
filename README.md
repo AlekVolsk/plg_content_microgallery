@@ -8,9 +8,11 @@ _description in Russian [here](README.ru.md)_
 
 Content plugin for Joomla! 3 for displaying image tiles in the article.
 
-Shortcode format: `{microgallery image_path}`. The path is specified from the site root. Exclude subdirectories.
+Shortcode format: `{microgallery image_path[ Title gallery]}`. The path is specified from the site root. Exclude subdirectories.
 
 Include extensions: `.jpg, .jpeg, .png, .gif, .svg`.
+
+If a gallery title is specified, it will be displayed in front of the gallery as a third-level title.
 
 **Params:**
 

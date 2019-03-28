@@ -32,7 +32,7 @@ class plgContentMicrogallery extends CMSPlugin
             return;
         }
 
-        $layout = PluginHelper::getLayoutPath('content', 'microgallery');
+        $layout = PluginHelper::getLayoutPath('content', 'microgallery', $this->params->get('layout'));
 
         if ($this->params->get('includes') == '1') {
             $css = str_replace(JPATH_ROOT . DIRECTORY_SEPARATOR, '', dirname($layout) . DIRECTORY_SEPARATOR . basename($layout, '.php') . '.css');
@@ -49,21 +49,25 @@ class plgContentMicrogallery extends CMSPlugin
             HTMLHelper::script('plugins/content/microgallery/assets/lazysizes/lazysizes.min.js', [], ['options' => ['version' => 'auto']]);
         }
 
-        if ($this->params->get('lightbox') == '1') {
+        $lightbox = $this->params->get('lightbox') == '1';
+        if ($lightbox) {
             HTMLHelper::stylesheet('plugins/content/microgallery/assets/lightgallery/css/lightgallery.min.css', [], ['options' => ['version' => 'auto']]);
             HTMLHelper::script('plugins/content/microgallery/assets/lightgallery/js/lightgallery.min.js', [], ['options' => ['version' => 'auto']]);
         }
 
         foreach ($results[1] as $key => $result) {
+            $result = explode(' ', $result, 2);
+            $caption = trim($result[1]);
+            
             if ($result && $result[0] != '/') {
-                $result = '/' . $result;
+                $result[0] = '/' . $result[0];
             }
-            if ($result && $result[strlen($result) - 1] != '/') {
-                $result .= '/';
+            if ($result[0] && $result[0][strlen($result[0]) - 1] != '/') {
+                $result[0] .= '/';
             }
-            $items = glob(str_replace('\\', '/', JPATH_ROOT . $result . '*.{jpg,jpeg,png,gif,svg}'), GLOB_BRACE);
+            $items = glob(str_replace('\\', '/', JPATH_ROOT . $result[0] . '*.{jpg,jpeg,png,gif,svg}'), GLOB_BRACE);
             foreach ($items as $i => $item) {
-                $items[$i] = str_replace(str_replace('\\', '/', JPATH_ROOT) . '/', '', $item);
+                $items[$i] = str_replace(str_replace('\\', '/', JPATH_ROOT), '', $item);
             }
 
             ob_start();
