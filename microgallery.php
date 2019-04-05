@@ -57,7 +57,7 @@ class plgContentMicrogallery extends CMSPlugin
 
         foreach ($results[1] as $key => $result) {
             $result = explode(' ', $result, 2);
-            $caption = trim($result[1]);
+            $caption = isset($result[1]) ? trim($result[1]) : '';
             
             if ($result && $result[0] != '/') {
                 $result[0] = '/' . $result[0];
