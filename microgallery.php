@@ -59,12 +59,14 @@ class plgContentMicrogallery extends CMSPlugin
             $result = explode(' ', $result, 2);
             $caption = isset($result[1]) ? trim($result[1]) : '';
             
-            if ($result && $result[0] != '/') {
-                $result[0] = '/' . $result[0];
-            }
-            if ($result[0] && $result[0][strlen($result[0]) - 1] != '/') {
+            if ($result && $result[0] && $result[0][strlen($result[0]) - 1] != '/') {
                 $result[0] .= '/';
+                if ($result[0][0] != '/')
+                {
+                    $result[0] = '/' . $result[0];
+                }
             }
+
             $items = glob(str_replace('\\', '/', JPATH_ROOT . $result[0] . '*.{jpg,jpeg,png,gif,svg}'), GLOB_BRACE);
             foreach ($items as $i => $item) {
                 $items[$i] = str_replace(str_replace('\\', '/', JPATH_ROOT), '', $item);
