@@ -44,13 +44,13 @@ if (strpos($width, '%') !== false) {
 <div id="mg_<?php echo $uid; ?>" class="mgallery">
 
     <?php foreach ($items as $item) { ?>
-    <a class="item" href="<?php echo $item; ?>">
+    <a class="item" href="<?php echo $item->full; ?>">
         <span
             class="item-img<?php if ($lazysizes) { echo ' lazyload'; } ?>"
             <?php if ($lazysizes) { ?>
-            data-bgset="<?php echo $item; ?>"
+            data-bgset="<?php echo $item->small; ?>"
             <?php } else { ?>
-            style="background-image:url(<?php echo $item; ?>);"
+            style="background-image:url(<?php echo $item->small; ?>);"
             <?php } ?>
         ></span>
     </a>

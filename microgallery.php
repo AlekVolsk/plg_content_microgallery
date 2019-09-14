@@ -9,9 +9,11 @@
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Image\Image;
 
 class plgContentMicrogallery extends CMSPlugin
 {
+    private $root;
 
     public function onContentPrepare($context, &$article, &$params, $page = 0)
     {
@@ -55,21 +57,34 @@ class plgContentMicrogallery extends CMSPlugin
             HTMLHelper::script('plugins/content/microgallery/assets/lightgallery/js/lightgallery.min.js', [], ['options' => ['version' => 'auto']]);
         }
 
+        $this->root = str_replace('\\', '/', JPATH_ROOT);
+        $cache = str_replace('\\', '/', JPATH_CACHE) . '/plg_content_microgallery';
+        $thmbWidth = (int) $this->params->get('thmbWidth', 400);
+        $thmbWidth = !$thmbWidth ? 400 : $thmbWidth;
+
         foreach ($results[1] as $key => $result) {
             $result = explode(' ', $result, 2);
             $caption = isset($result[1]) ? trim($result[1]) : '';
-            
+
             if ($result && $result[0] && $result[0][strlen($result[0]) - 1] != '/') {
                 $result[0] .= '/';
-                if ($result[0][0] != '/')
-                {
+                if ($result[0][0] != '/') {
                     $result[0] = '/' . $result[0];
                 }
             }
 
             $items = glob(str_replace('\\', '/', JPATH_ROOT . $result[0] . '*.{jpg,jpeg,png,gif,svg}'), GLOB_BRACE);
-            foreach ($items as $i => $item) {
-                $items[$i] = str_replace(str_replace('\\', '/', JPATH_ROOT), '', $item);
+            foreach ($items as $i => $file) {
+                $file = str_replace(str_replace('\\', '/', JPATH_ROOT), '', $file);
+                $item = new stdClass();
+                $item->full = $file;
+                $item->small = str_replace($this->root, '', $cache) . $file;
+                if (!file_exists($this->root . $item->small)) {
+                    if (!$this->getCachedImage($this->root . $item->full, $this->root . $item->small, $thmbWidth)) {
+                        $item->small = $item->full;
+                    }
+                }
+                $items[$i] = $item;
             }
 
             ob_start();
@@ -77,5 +92,19 @@ class plgContentMicrogallery extends CMSPlugin
             $article->text = str_replace($results[0][$key], ob_get_clean(), $article->text);
         }
     }
-}
 
+    private function getCachedImage($in, $out, $size)
+    {
+        if (!$in || !$out) return false;
+        if (!file_exists($in)) return false;
+
+        JFolder::create(dirname($out), 0755);
+        $image = new Image($in);
+        $mode = $image->getWidth() > $image->getHeight() ? Image::SCALE_INSIDE : Image::SCALE_OUTSIDE;
+        $image->resize((int) $size, (int) $size, false, $mode);
+        $image->toFile($out);
+        unset($image);
+
+        return file_exists($out);
+    }
+}

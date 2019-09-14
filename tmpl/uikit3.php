@@ -13,11 +13,11 @@
     <?php foreach ($items as $item) { ?>
     <div>
         <a
-            href="<?php echo $item; ?>"
+            href="<?php echo $item->full; ?>"
             <?php echo ($caption ? ' data-alt="' . $caption . '"' : ''); ?>
             <?php echo ($caption ? ' data-caption="' . $caption . '"' : ''); ?>
         >
-            <img data-src="<?php echo $item; ?>"<?php echo ($caption ? ' data-caption="' . $caption . '"' : ''); ?> alt="<?php echo $caption; ?>" class="uk-width" data-uk-img>
+            <img data-src="<?php echo $item->small; ?>"<?php echo ($caption ? ' data-caption="' . $caption . '"' : ''); ?> alt="<?php echo $caption; ?>" class="uk-width" data-uk-img>
         </a>
     </div>
     <?php } ?>
