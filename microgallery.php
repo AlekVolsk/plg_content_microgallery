@@ -9,7 +9,7 @@
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\CMS\Image\Image;
+use Joomla\Image\Image;
 
 class plgContentMicrogallery extends CMSPlugin
 {
